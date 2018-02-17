@@ -1,6 +1,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const StaticSiteGeneratorWebpackPlugin = require('static-site-generator-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
@@ -42,6 +43,7 @@ module.exports = (options) => {
     plugins: [
       new StaticSiteGeneratorWebpackPlugin('main', ['/']),
       new webpack.ProvidePlugin({ Glamor: 'glamor/react' }),
+      new CopyWebpackPlugin([{ from: `${path.resolve('src')}/favicon.ico`, to: `${path.resolve('build')}/favicon.ico` }])
     ].concat(options.plugins)
 
   };
