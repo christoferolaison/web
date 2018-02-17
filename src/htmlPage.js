@@ -10,7 +10,6 @@ export default ({ app = '', style = '', title = 'webpack-react-static-site-boile
       <style>${style}</style>
     </head>
     <body>
-      
       <div id="app">${app}</div>
     </body>
   </html>
