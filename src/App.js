@@ -1,58 +1,59 @@
 
 import React, { Component } from 'react'
+import { css } from 'glamor'
+import primitives from './primitives';
+import theme from './theme'
+import viaFerrata from './me-via-ferrata-loen.jpg'
 
-class App extends Component {
+const { Text, Heading, Link, List } = primitives
 
-  state = {
-    images: [
-      'https://images.unsplash.com/photo-1469715492424-1192d1e15221?dpr=1&auto=format&fit=crop&w=767&h=432&q=80&cs=tinysrgb&crop=',
-      'https://images.unsplash.com/photo-1469721492384-bf51ab0a0a59?dpr=2&auto=format&fit=crop&w=1199&h=675&q=80&cs=tinysrgb&crop='
-    ],
-    selected: 0,
-  };
+css.global('*', {
+  margin: 0,
+  padding: 0,
+  boxSizing: 'border-box',
+})
 
-  changeImage = () => this.setState((prevState) => ({ selected: prevState.selected === 0 ? 1 : 0 }));
-
-  render() {
-    const { selected, images } = this.state
-    return (
-      <div
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          padding: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          height: '90vh',
-          maxWidth: 620,
-          fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
-          lineHeight: 1.5,
-          textAlign: 'center',
-        }}
-      >
-        <h1
-          style={{
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          webpack-react-static-site-boilerplate
-        </h1>
-        <p
-          style={{ fontSize: 20 }}
-        >
-          A boilerplate for creating static web apps with React. It uses webpack for bundling and Github Pages for simple deploys.</p>
-        <img
-          onClick={() => this.changeImage()}
-          style={{ maxWidth: 400, cursor: 'pointer' }}
-          src={images[selected]}
-        />
-        <p>Made by <a style={{ color: '#793F7D', textDecoration: 'none' }} href="https://twitter.com/tossetosse">@tossetosse</a>.</p>
-      </div>
-    )
-  }
-}
-
-export default App
+export default () =>
+  <div
+    css={{
+      backgroundImage: `url(${viaFerrata})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      display: 'inline-block',
+      width: '100%',
+      height: '100vh',
+    }}
+  >
+    <div
+      css={{
+        backgroundColor: theme.color.darkTransparent,
+        height: '100vh',
+        paddingTop: theme.spacing[4],
+        paddingLeft: theme.spacing[2],
+        paddingRight: theme.spacing[2],
+        transition: 'all 400ms',
+        [theme.breakpoints.lg]: {
+          backgroundColor: theme.color.lightTransparent,
+          height: 'auto',
+          width: 480,
+          marginTop: theme.spacing[4],
+          marginLeft: theme.spacing[4],
+          padding: theme.spacing[2],
+        }
+      }}
+    >
+      <Heading>Christofer</Heading>
+      <Text>
+        Developer based in Stockholm, Sweden. Currently working at Mentimeter were we are building an easy-to-use presentation software.
+      </Text>
+      <nav>
+        <List>
+          <li><Link href="mailto:christofer.ps.olaison@gmail.com">Mail</Link></li>
+          <li><Link href="https://github.com/christoferolaison">Github</Link></li>
+          <li><Link href="https://www.linkedin.com/in/christofer-olaison-a4053461/">Linkedin</Link></li>
+          <li><Link href="https://twitter.com/tossetosse">Twitter</Link></li>
+        </List>
+      </nav>
+    </div>
+  </div>
